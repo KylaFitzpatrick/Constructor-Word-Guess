@@ -5,16 +5,16 @@
 var inquirer = require("inquirer");
 var Word = require("./Word")
 var lettersArray = "abcdefghijklmnopqrstuvwxyz"
-var words = ["United States", "Austrailia", "Ireland", "Paris", "Spain", "Portugal", "Costa Rica"]
+// var words = ["United States", "Austrailia", "Ireland", "Paris", "Spain", "Portugal", "Costa Rica"]
+var words = ["United States"]
 var answer = words[Math.floor(Math.random() * words.length)];
 var boardArray = []
 // Create a new word object
-var word = new Word(answer, boardArray);
-var incorrectLetters = []
-var correctLetters = []
+var word = new Word(answer, boardArray, resetGame, numGuesses);
 var numGuesses = 10;
 var guess = ""
-// resetGame();;
+var resetGame;
+var letterGuessed;
 // Prompts the user for each guess and keeps track of the user's remaining guesses
 
 // Randomly selects a word and uses the Word constructor to store it
@@ -65,14 +65,13 @@ function startGame(){
  
         console.log(word.checkUserGuess(guess).join(" "))
         console.log(answer)
-    
  
 inquirer
     .prompt([
         {
             name: "guess",
             type: "string",
-            message: "? Guess a letter!",
+            message: "Guess a letter!",
         } 
     ])
     .then(function (userInput) {
@@ -81,7 +80,8 @@ inquirer
       word.checkUserGuess(userInput.guess)
       guess = userInput.guess
         // Call check to verify letter
-        // if (userInput.guess === word[i]) {
+        // if (guess === answer) {
+        //     resetGame();
         //     word.check(answer.guessedCorrect);
         //     console.log(answerArray[i] = "_")
 
@@ -91,28 +91,27 @@ inquirer
         //     num--;
         // }
         startGame()
+    
     });
 
 
-
+  
 
 }
-    function resetGame(){
+    function restart(){
+        console.log(resetGame);
        inquirer.prompt([
         {
-            name: "list",
+            name: "resetgame",
             type: "string",
             message: "Restart Game?",
             choices: ["yes", "no"],
-            name: "resetGame"
+           
         }
     ])
-        .then(function(input){
-            if(input.reset === yes){
-               incorrectLetters = []
-               correctLetters = []
-               numGuesses = 10 
-            }
+        .then(function(resetGame){
+            word.checkAnswer(resetGame.resetgame)
+            resetgame = resetGame.resetgame
         })
         
        
@@ -120,3 +119,6 @@ inquirer
 
 
     startGame();
+    if(numGuesses === 0){
+    restart();
+    }

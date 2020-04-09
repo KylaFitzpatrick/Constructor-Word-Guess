@@ -3,53 +3,60 @@
 // an underlying character or a blank placeholder (such as an underscore), 
 // depending on whether or not the user has guessed the letter. 
 // That means the constructor should define:
-function Letter(value, boardArray) {
+function Letter(value, boardArray, resetGame, numGuesses) {
     this.answer = value;
     this.letterGuessed = false;
+    this.boardArray = boardArray;
+    this.resetGame = resetGame;
+    this.numGuesses = numGuesses;
 
-    this.boardArray = boardArray
-
-
-    this.checkLetter = function () {
-        if (this.character === " ") {
-            this.letterGuessed = true
-            this.character.push(" ");
-            console.log(this.character)
-        } else {
-            if (this.letterGuessed === false) {
-                this.character.push("_");
-            } else {
-                this.character
-            }
-
-        }
-        this.checkGuess = function (guess) {
-            if (this.character === guess) {
-                this.letterGuessed = true;
-            }
-        }
-    }
-
-
-
+    //user guess in getupdate board function
+    //make answer a string
+    //if user guess hasnt guessed display underscores for answer
+    //else length of the board array and if the index of the answer is guessed by user user guess is displayed in board array
     this.getUpdateBoard = function (userGuess) {
         var newAnswerArray = this.answer.split("")
         console.log("user guess:", userGuess.length)
         if (userGuess.trim().length===0) {
+            
             for (var i = 0; i < newAnswerArray.length; i++) {
                 this.boardArray.push("_")
+                if(newAnswerArray[i] === " " )
+                this.boardArray[i] = " "
             }
+        
         }
         else {
             for (var i = 0; i < this.boardArray.length; i++) {
                 if (newAnswerArray[i] === userGuess) {
                     this.boardArray[i] = userGuess
+                    this.letterGuessed = true;
+                    
                 }
             }
         }
 
 
         return this.boardArray
+    }
+    //verify the answer equals userguess
+    //if answer equals userguess then display new word
+    this.checkAnswer = function(){
+        for (var i = 0; i < this.boardArray.length; i++) {
+        if(this.boardArray[i] !== "_"){
+            console.log("it works")
+            this.getUpdateBoard()
+        }
+    }
+        // return this.resetGame
+    }
+    //verify user selection
+    //if choice yes then reset numguesses and newboardarray
+    //if choice is no exit game
+    this.resetGame = function(){
+        if(resetGame.choices === "yes"){
+        this.numGuesses; 
+        }
     }
 
 }
