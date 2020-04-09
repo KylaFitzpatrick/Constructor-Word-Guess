@@ -79,22 +79,11 @@ inquirer
 
       word.checkUserGuess(userInput.guess)
       guess = userInput.guess
-        // Call check to verify letter
-        // if (guess === answer) {
-        //     resetGame();
-        //     word.check(answer.guessedCorrect);
-        //     console.log(answerArray[i] = "_")
-
-        // }
-        // if (answer.guess !== word[i]) {
-        //     word.findActor(answer.guessedIncorrect);
-        //     num--;
-        // }
         startGame()
     
     });
 
-
+    
   
 
 }

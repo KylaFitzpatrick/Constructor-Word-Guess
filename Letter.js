@@ -17,54 +17,66 @@ function Letter(value, boardArray, resetGame, numGuesses) {
     this.getUpdateBoard = function (userGuess) {
         var newAnswerArray = this.answer.split("")
         console.log("user guess:", userGuess.length)
-        if (userGuess.trim().length===0) {
-            
+        if (userGuess.trim().length === 0) {
+
             for (var i = 0; i < newAnswerArray.length; i++) {
                 this.boardArray.push("_")
-                if(newAnswerArray[i] === " " )
-                this.boardArray[i] = " "
+                if (newAnswerArray[i] === " ")
+                    this.boardArray[i] = " "
             }
-        
-        }
-        else {
+
+
+        } else {
             for (var i = 0; i < this.boardArray.length; i++) {
-                if (newAnswerArray[i] === userGuess) {
+                if (newAnswerArray[i] === userGuess) { //if user guesses letter correctly assign letter to board
                     this.boardArray[i] = userGuess
                     this.letterGuessed = true;
-                    
+                    console.log("Correct!!!")
                 }
+                if(userGuess.length > 0) {
+                    console.log("Incorrect!!!\n")
+                    this.numGuesses = 10
+                    this.numGuesses--;
+                    console.log(this.numGuesses + " guesses remaining!\n")
+
+                }
+
+                }
+
+            }
+
+            return this.boardArray
+        }
+        //verify the answer equals userguess
+        //if answer equals userguess then display new word
+        this.checkAnswer = function () {
+            if (this.boardArray === this.answer) {
+                console.log("You win!")
+                this.numGuesses = 10;
+                // }
+                // for (var i = 0; i < this.boardArray.length; i++) {
+                // if(this.boardArray[i] !== "_"){
+                //     console.log("it works")
+                this.getUpdateBoard()
             }
         }
-
-
-        return this.boardArray
-    }
-    //verify the answer equals userguess
-    //if answer equals userguess then display new word
-    this.checkAnswer = function(){
-        for (var i = 0; i < this.boardArray.length; i++) {
-        if(this.boardArray[i] !== "_"){
-            console.log("it works")
-            this.getUpdateBoard()
-        }
-    }
         // return this.resetGame
+        // }
+        //verify user selection
+        //if choice yes then reset numguesses and newboardarray
+        //if choice is no exit game
+        // this.resetGame = function(){
+        //     if(resetGame.choices === "yes"){
+        //     this.numGuesses; 
+        //     }
+        // }
+
     }
-    //verify user selection
-    //if choice yes then reset numguesses and newboardarray
-    //if choice is no exit game
-    this.resetGame = function(){
-        if(resetGame.choices === "yes"){
-        this.numGuesses; 
-        }
-    }
-
-}
 
 
 
 
-module.exports = Letter;
+    module.exports = Letter;
 // A string value to store the underlying character for the letter
 // A boolean value that stores whether that letter has been guessed yet
 // A function that returns the underlying character if the letter 
