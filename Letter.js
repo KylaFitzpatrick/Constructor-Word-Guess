@@ -8,7 +8,7 @@ function Letter(value, boardArray, resetGame, numGuesses) {
     this.letterGuessed = false;
     this.boardArray = boardArray;
     this.resetGame = resetGame;
-    this.numGuesses = numGuesses;
+    this.numGuesses = 10;
 
     //user guess in getupdate board function
     //make answer a string
@@ -32,24 +32,29 @@ function Letter(value, boardArray, resetGame, numGuesses) {
                     this.boardArray[i] = userGuess
                     this.letterGuessed = true;
                     console.log("Correct!!!")
-                }
-                if(userGuess.length > 0) {
-                    console.log("Incorrect!!!\n")
-                    this.numGuesses = 10
-                    this.numGuesses--;
-                    console.log(this.numGuesses + " guesses remaining!\n")
-
-                }
-
-                }
-
+                    
+                } 
+                
             }
 
+            if (newAnswerArray.indexOf(userGuess) === -1){
+                console.log("Incorrect!!!\n")
+                this.letterGuessed = false
+                this.numGuesses--;
+                console.log(this.numGuesses + " guesses remaining!\n")
+                
+            }
+        
+        
+        }
+
             return this.boardArray
+            
         }
         //verify the answer equals userguess
         //if answer equals userguess then display new word
-        this.checkAnswer = function () {
+        this.getAnswer = function () {
+            // if (this.answer.length === this.boardArray.length) {
             if (this.boardArray === this.answer) {
                 console.log("You win!")
                 this.numGuesses = 10;

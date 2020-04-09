@@ -22,12 +22,12 @@ function Word(answer, boardArray, resetGame, numGuesses){
     //parameters passed to letter constructor stored in letter var
     //call the get update board function from letter variable and pass in guess from user
     this.checkUserGuess = function(userGuess){
-        var letter = new Letter(this.answer, this.boardArray)
+        var letter = new Letter(this.answer, this.boardArray, this.numGuesses)
         return letter.getUpdateBoard(userGuess)
     }
-    this.checkAnswer = function(userGuess){
-        var letter = new Letter(this.resetGame)
-        return letter.checkAnswer(userGuess)
+    this.checkUserAnswer = function(){
+        var letter = new Letter(this.answer, this.boardArray)
+        return letter.getAnswer()
     }
     
 }

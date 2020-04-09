@@ -79,6 +79,7 @@ inquirer
 
       word.checkUserGuess(userInput.guess)
       guess = userInput.guess
+      word.checkUserAnswer(userInput.guess)
         startGame()
     
     });
