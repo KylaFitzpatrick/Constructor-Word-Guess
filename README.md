@@ -21,8 +21,6 @@ Run steps 1-2 to play the word guess game:
 ### Screenshots of the app functioning
 1. node index.js 
 
-![Alt text](/images/guessing_word.png)
-
 ![Alt text](/images/lose.png)
 
 ![Alt text](/images/win.png)
