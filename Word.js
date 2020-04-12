@@ -24,7 +24,7 @@ function Word(word){
         var letterGuessedCorrectly = false;
         this.letterArry.map(function(letter) {
             
-            if (letterGuessed.toLowerCase() === letter.letter.toLowerCase() || letter.letter === " " ) {
+            if (letterGuessed.toLowerCase() === letter.letter.toLowerCase() || letter.letter === " " && letterGuessed === letter.letter) {
                 letter.isDiplayed = true;
                 letterGuessedCorrectly = true;
 
