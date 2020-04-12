@@ -7,7 +7,7 @@ function Game() {
     this.wins = 0;
     this.loses = 0;
    
-    this.randomWords = ["united states", "austrailia", "ireland", "paris", "spain", "portugal", "costa rica"];
+    this.randomWords = ["United States", "Austrailia", "Ireland", "Paris", "Spain", "Portugal", "Costa Rica"];
     this.pickRandomWord = function () {
         var randomIndex = Math.floor(Math.random() * this.randomWords.length);
         return this.randomWords[randomIndex];
