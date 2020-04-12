@@ -47,6 +47,7 @@ function guess(wordToDisplay, game) {
             if (!wordToDisplay.isWon) {
                 // If the last letter was guessed correctly
                 if (wordToDisplay.lastLetterGuessedCorrectly) {
+                    console.log(`\x1b[32m%s\x1b[0m`,`\nCorrect!\n`)
                     guess(wordToDisplay, game);
                     // If the last letter was NOT guessed correctly
                 } else {
@@ -54,10 +55,11 @@ function guess(wordToDisplay, game) {
                     game.guesses--;
                     //If guesses is 0 then restart game
                     if (game.guesses === 0) {
-                        console.log('Sorry, you lose!')
+                        console.log('\x1b[31m%s\x1b[0m','\nSorry, you lose!\n')
                         playAgain(game);
                     } else {
-                        console.log(`\nIncorrect!\n \nYou have ${game.guesses} guesses remaining!`)
+                        console.log('\x1b[31m%s\x1b[0m', `\nIncorrect!`) 
+                        console.log(`\nYou have ${game.guesses} guesses remaining!\n`)
                         guess(wordToDisplay, game);
                     }
 
@@ -66,7 +68,7 @@ function guess(wordToDisplay, game) {
                 // If we HAVE won:
             } else {
                 console.log(wordToDisplay.displayWord());
-                console.log(`\nCorrect!\n`)
+                console.log(`\x1b[32m%s\x1b[0m`,`\nYou won!\n`)
                 playAgain(game);  
             }
 
