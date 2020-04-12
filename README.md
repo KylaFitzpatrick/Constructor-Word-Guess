@@ -11,7 +11,7 @@ Inquirer prompts the user for each guess and keeps track of the user's remaining
 
 ### Instructions on how to run the app
 
-Run steps 1-2 to display to play the word guess game:
+Run steps 1-2 to play the word guess game:
 
 1. node index.js 
 
