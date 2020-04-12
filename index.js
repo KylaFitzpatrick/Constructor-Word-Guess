@@ -6,8 +6,8 @@ function Game() {
     this.guesses = 10;
     this.wins = 0;
     this.loses = 0;
-
-    this.randomWords = ["united states", "austrailia", "ireland", "paris", "spain", "portugal", "costa rica"];
+    this.randomWords = ["Paris"]
+    // this.randomWords = ["united states", "austrailia", "ireland", "paris", "spain", "portugal", "costa rica"];
     this.pickRandomWord = function () {
         var randomIndex = Math.floor(Math.random() * this.randomWords.length);
         return this.randomWords[randomIndex];
@@ -42,13 +42,12 @@ function guess(wordToDisplay, game) {
             var letter = answer.guess;
             wordToDisplay.checkWord(letter);
             wordToDisplay.haveWon();
+            
             // If we have not won:
             if (!wordToDisplay.isWon) {
-                
                 // If the last letter was guessed correctly
                 if (wordToDisplay.lastLetterGuessedCorrectly) {
                     guess(wordToDisplay, game);
-                    
                     // If the last letter was NOT guessed correctly
                 } else {
                     // Decrement the guessed the user has left
@@ -66,11 +65,8 @@ function guess(wordToDisplay, game) {
 
                 // If we HAVE won:
             } else {
-                    
-                console.log(`\nCorrect! Next word!`)
-                playAgain(game);
-                
-                
+                console.log(`\nCorrect!\n`)
+                playAgain(game);  
             }
 
         })

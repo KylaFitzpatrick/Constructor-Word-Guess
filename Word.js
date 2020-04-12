@@ -5,7 +5,6 @@ var Letter = require("./Letter")
 // attempting to guess. That means the constructor should define:
 
 function Word(word){
-    // this.isLose = false;
     this.isWon = false;
     this.word = word;
     this.lastLetterGuessedCorrectly = false;
@@ -25,10 +24,10 @@ function Word(word){
         var letterGuessedCorrectly = false;
         this.letterArry.map(function(letter) {
             
-            if (letterGuessed === letter.letter || letter.letter === " ") {
+            if (letterGuessed.toLowerCase() === letter.letter.toLowerCase() || letter.letter === " " ) {
                 letter.isDiplayed = true;
                 letterGuessedCorrectly = true;
-                
+
             }
             return letter;
         })
@@ -42,7 +41,9 @@ function Word(word){
            if (!letter.isDiplayed) {
                haveWon = false;
            }
+           
        }
+       
        this.isWon = haveWon;
 }
 }
