@@ -44,6 +44,7 @@ function guess(wordToDisplay, game) {
             wordToDisplay.haveWon();
             // If we have not won:
             if (!wordToDisplay.isWon) {
+                
                 // If the last letter was guessed correctly
                 if (wordToDisplay.lastLetterGuessedCorrectly) {
                     guess(wordToDisplay, game);
@@ -65,9 +66,10 @@ function guess(wordToDisplay, game) {
 
                 // If we HAVE won:
             } else {
-                
-                console.log(`Correct! Next word!`)
+                    
+                console.log(`\nCorrect! Next word!`)
                 playAgain(game);
+                
                 
             }
 

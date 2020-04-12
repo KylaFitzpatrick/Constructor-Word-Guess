@@ -4,39 +4,47 @@ var Letter = require("./Letter")
 // This is used to create an object representing the current word the user is 
 // attempting to guess. That means the constructor should define:
 
-function Word(answer, boardArray, resetGame, numGuesses){
-    this.answer = answer;
-    this.answerArray = []
-    this.boardArray = boardArray;
-    this.numGuesses = numGuesses;
-    this.resetGame = resetGame;
-    this.wordString = function(){
-        for(i = 0; i < answer.length; i++){ //random answer from index file
-           var letter = new Letter(answer[i]) //random answer index store in letter var
-            console.log(this.answerArray[i].push(letter)) //push letter to answerarray
-        }
-  
+function Word(word){
+    // this.isLose = false;
+    this.isWon = false;
+    this.word = word;
+    this.lastLetterGuessedCorrectly = false;
+    this.letterArry = this.word.split("").map(function(letter) {
+        return new Letter(letter);
+    })
+    //display letter in array
+    this.displayWord = function() {
+        return this.letterArry
+            .map(function(letter) {
+                return letter.display();   
+            })
+            .join("");
     }
-    
-    //userguess parameter passed in to checkuser function
-    //parameters passed to letter constructor stored in letter var
-    //call the get update board function from letter variable and pass in guess from user
-    this.checkUserGuess = function(userGuess){
-        var letter = new Letter(this.answer, this.boardArray, this.numGuesses)
-        return letter.getUpdateBoard(userGuess)
+    //display letter if guessed
+    this.checkWord = function(letterGuessed) {
+        var letterGuessedCorrectly = false;
+        this.letterArry.map(function(letter) {
+            
+            if (letterGuessed === letter.letter || letter.letter === " ") {
+                letter.isDiplayed = true;
+                letterGuessedCorrectly = true;
+                
+            }
+            return letter;
+        })
+        this.lastLetterGuessedCorrectly = letterGuessedCorrectly;
     }
-    this.checkUserAnswer = function(){
-        var letter = new Letter(this.answer, this.boardArray)
-        return letter.getAnswer()
-    }
-    
+   
+    this.haveWon = function() {
+       var haveWon = true;
+       for (var i = 0; i < this.letterArry.length; i++) {
+           var letter = this.letterArry[i];
+           if (!letter.isDiplayed) {
+               haveWon = false;
+           }
+       }
+       this.isWon = haveWon;
 }
+}
+
 module.exports = Word;
-// An array of new Letter objects representing the letters of the underlying word
-
-// A function that returns a string representing the word. This should call the 
-// function on each letter object (the first function defined in Letter.js) that 
-// displays the character or an underscore and concatenate those together.
-
-// A function that takes a character as an argument and calls the guess function 
-// on each letter object (the second function defined in Letter.js)
